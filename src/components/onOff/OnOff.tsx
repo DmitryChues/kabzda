@@ -1,22 +1,25 @@
-import React from 'react';
+import React, { FC } from 'react';
 
+type OnOffPropsType = {
+	status: boolean
+	statusButton: () => void
+}
 
-
-const OnOff = (props: { status: boolean }) => {
-	if (props.status === true) {
-		return (
-			<>
-				<button style={{ backgroundColor: "green" }}>On</button>
-				<button>Off</button>
-				<Indicator status={props.status} />
-			</>
-		)
-	}
+const OnOff: FC<OnOffPropsType> = ({ status, statusButton }) => {
+	// if (status === true) {
+	// 	return (
+	// 		<>
+	// 			<button style={{ backgroundColor: "green" }}>On</button>
+	// 			<button>Off</button>
+	// 			<Indicator status={status} />
+	// 		</>
+	// 	)
+	// }
 	return (
 		<>
-			<button>On</button>
-			<button style={{ backgroundColor: "red" }}>Off</button>
-			<Indicator status={props.status} />
+			{status ? <button style={{ backgroundColor: "green" }}>On</button> : <button onClick={statusButton}>On</button>}
+			{status ? <button onClick={statusButton}>Off</button> : <button style={{ backgroundColor: "red" }}>Off</button>}
+			<Indicator status={status} />
 		</>)
 
 

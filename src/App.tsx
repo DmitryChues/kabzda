@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { Accordion } from './components/accordion/Accordion';
 import { Rating } from './components/rating/Rating';
@@ -6,19 +6,25 @@ import OnOff from './components/onOff/OnOff';
 
 function App() {
 	console.log("rendering App");
+
+	const [status, setStatus] = useState(false)
+	const statusButton = () => {
+		setStatus(!status)
+	}
+
 	return (
 		<div className="App">
-			<PageTitle title={"This is App component"} />
-			<Rating value={3} />
+			{/* <PageTitle title={"This is App component"} />
+			<Rating value={3} /> */}
 			<Accordion title={"Pizza"} collapsed={true} />
 			<Accordion title={"Coffee"} collapsed={false} />
-			<Rating value={0} />
+			{/* <Rating value={0} />
 			<Rating value={1} />
 			<Rating value={2} />
 			<Rating value={3} />
 			<Rating value={4} />
-			<Rating value={5} />
-			<OnOff status={true} />
+			<Rating value={5} /> */}
+			<OnOff status={status} statusButton={statusButton} />
 		</div>
 	);
 }
