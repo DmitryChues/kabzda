@@ -3,6 +3,8 @@ import './App.css';
 import { Accordion } from './components/accordion/Accordion';
 import { Rating } from './components/rating/Rating';
 import OnOff from './components/onOff/OnOff';
+import { UncontrolledAccordion } from './components/UncontrolledAccordion/UncontrolledAccordion';
+import { UncontrolledRating } from './components/UncontrolledRating/UncontrolledRating';
 
 function App() {
 	console.log("rendering App");
@@ -10,6 +12,23 @@ function App() {
 	const [status, setStatus] = useState(false)
 	const statusButton = () => {
 		setStatus(!status)
+	}
+
+	const accordionData = [
+		{
+			title: 'Pizza',
+			points: ['Capri', 'Margarita', 'Pepperoni'],
+			collapsed: true,
+		},
+		{
+			title: 'Coffee',
+			points: ['Latte', 'Cappuccino', 'Americano'],
+			collapsed: false,
+		},
+	]
+
+	const changeCollapsed = () => {
+
 	}
 
 	return (
@@ -24,7 +43,11 @@ function App() {
 			<Rating value={3} />
 			<Rating value={4} />
 			<Rating value={5} /> */}
-			<OnOff status={status} statusButton={statusButton} />
+			<OnOff />
+			<OnOff />
+			<OnOff />
+			<UncontrolledAccordion title={'Pizza'} />
+			<UncontrolledRating />
 		</div>
 	);
 }
