@@ -1,15 +1,11 @@
 import React, { FC, useState } from 'react';
 
-type OnOffPropsType = {
-	status: boolean
+type UncontrolledOnOffProps = {
 	onChange: (status: boolean) => void
-	// statusButton: () => void
 }
 
-
-
-
-const OnOff: FC<OnOffPropsType> = ({ status, onChange }) => {
+export const UncontrolledOnOff: FC<UncontrolledOnOffProps> = ({ onChange }) => {
+	const [status, setStatus] = useState(false)
 
 	const onStyle = {
 		width: '40px',
@@ -31,25 +27,25 @@ const OnOff: FC<OnOffPropsType> = ({ status, onChange }) => {
 		marginLeft: '5px',
 		backgroundColor: status ? 'green' : 'red',
 	}
+
+	const onClikedHandler = () => {
+		setStatus(true)
+		onChange(true)
+	}
+	const offClikedHandler = () => {
+		setStatus(false)
+		onChange(false)
+	}
 	return (
 		<>
 			<div style={{ display: 'flex', alignItems: 'center' }}>
-				<div style={onStyle} onClick={() => onChange(true)}>On</div>
-				<div style={offStyle} onClick={() => onChange(false)}>Off</div>
+				<div style={onStyle} onClick={onClikedHandler}>On</div>
+				<div style={offStyle} onClick={offClikedHandler}>Off</div>
 				<div style={indicatorStyle}></div>
 			</div>
 		</>)
 };
 
 const Indicator = (props: { status: boolean }) => {
-	if (props.status) {
-		return (
-			<span style={{ display: "inline-block", width: "10px", height: "10px", backgroundColor: "green", borderRadius: "50%" }}></span>
-		)
-	}
-	return (
-		<span style={{ display: "inline-block", width: "10px", height: "10px", backgroundColor: "red", borderRadius: "50%" }}></span>
-	)
+	return <div style={{ display: "inline-block", width: "10px", height: "10px", backgroundColor: `${props.status ? 'green' : 'red'}`, borderRadius: "50%" }}></div>
 }
-
-export default OnOff;
